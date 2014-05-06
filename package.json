@@ -1,0 +1,19 @@
+{
+  "name": "leo-board-pinoccio",
+  "description": "pinoccio board file for leo arduino command line build tool",
+  "version": "0.0.0",
+  "repository": {
+    "url": "git://github.com/soldair/leo-board-pinoccio.git"
+  },
+  "main": "index.js",
+  "scripts": {
+    "test": "tape test/*.js"
+  },
+  "author": "Ryan Day",
+  "dependencies": {
+    "leo-board": "0.0.1"
+  },
+  "devDependencies": {
+    "tape": "~2.3.2"
+  }
+}
