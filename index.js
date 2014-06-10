@@ -1,9 +1,10 @@
 var board = require('leo-board');
-
+var arduinoPlatform = require('leo-platform-arduino');
 
 var pinoccio = board();
 pinoccio.name = "Pinoccio Scout";
 pinoccio.cpu = "atmega256rfr2";
+pinoccio.platform = arduinoPlatform;
 
 pinoccio.upload.tool = "avrdude";
 pinoccio.upload.protocol = "arduino";
