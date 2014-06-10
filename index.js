@@ -1,10 +1,28 @@
 var board = require('leo-board');
 var arduinoPlatform = require('leo-platform-arduino');
+var aprefs = require("arduino-preferences");
+var path = require('path');
 
 var pinoccio = board();
 pinoccio.name = "Pinoccio Scout";
 pinoccio.cpu = "atmega256rfr2";
-pinoccio.platform = arduinoPlatform;
+pinoccio.platform = function(){
+  var ret = arduinoPlatform.apply(this,arguments);
+
+  var prefs = aprefs(); 
+  // add pinoccio variant to includes just in case the firware is installed in the core files
+  ret.includes.push(path.join(ret.runtime.ide.path,'hardware/pinoccio/avr/variants/pinoccio'))
+
+  if(prefs){
+    prefs = prefs[0];
+    if(prefs['sketchbook.path']){
+      // add sketchbook path to includes just in case the firmware is in the sketchbook
+      ret.includes.push(path.join(prefs['sketchbook.path'],'hardware/pinoccio/avr/variants/pinoccio'))
+    }
+  }
+
+  return ret;
+}
 
 pinoccio.upload.tool = "avrdude";
 pinoccio.upload.protocol = "arduino";
