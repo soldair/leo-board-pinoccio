@@ -21,11 +21,13 @@ pinoccio.platform = function(){
     }
   }
 
+  
+
   return ret;
 }
 
 pinoccio.upload.tool = "avrdude";
-pinoccio.upload.protocol = "arduino";
+pinoccio.upload.protocol = "wiring";
 pinoccio.upload.maximum_size = 253952;
 pinoccio.upload.speed = 115200
 
