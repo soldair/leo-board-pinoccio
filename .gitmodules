@@ -1,0 +1,3 @@
+[submodule "hardware/pinoccio"]
+	path = hardware/pinoccio
+	url = https://github.com/Pinoccio/core-pinoccio.git

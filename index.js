@@ -9,10 +9,10 @@ pinoccio.cpu = "atmega256rfr2";
 pinoccio.platform = function(){
   var ret = arduinoPlatform.apply(this,arguments);
 
-  var prefs = aprefs(); 
   // add pinoccio variant to includes just in case the firware is installed in the core files
   ret.includes.push(path.join(ret.runtime.ide.path,'hardware/pinoccio/avr/variants/pinoccio'))
 
+  var prefs = aprefs(); 
   if(prefs){
     prefs = prefs[0];
     if(prefs['sketchbook.path']){
@@ -20,8 +20,9 @@ pinoccio.platform = function(){
       ret.includes.push(path.join(prefs['sketchbook.path'],'hardware/pinoccio/avr/variants/pinoccio'))
     }
   }
-
   
+  // add npm bundled hardware definitions
+  ret.includes.push(path.join(__dirname, 'hardware/pinoccio/avr/variants/pinoccio'));
 
   return ret;
 }
